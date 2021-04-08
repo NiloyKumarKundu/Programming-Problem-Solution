@@ -99,8 +99,54 @@ void input() {
 /* ----------------------------------------------------------------------------------- */
 
 
-void solve() {
+class Task {
+public:
+	int taskId;
+	int deadline;
+	int profit;
     
+};
+
+int compare(Task a, Task b) {
+		return a.profit > b.profit;
+}
+
+void solve() {
+	Task tasks[] = {{1, 9, 15}, {2, 2, 2}, {3, 5, 18}, {4, 7, 1}, {5, 4, 25}, {6, 2, 20}, {7, 5, 8}, {8, 7, 10}, {9, 4, 12}, {10, 3, 5}};
+	int n = 0, size = 10;
+	rep(i, 0, size) {
+		n = max(n, tasks[i].deadline);
+	}
+	sort(tasks, tasks + size, compare);
+
+	Task a[n];
+	memset(a, -1, sizeof(a));
+
+    rep(i, 0, size) {
+        if (a[tasks[i].deadline - 1].taskId == -1) {
+			a[tasks[i].deadline - 1] = tasks[i];
+		} else if (a[tasks[i].deadline - 1].taskId != -1) {
+            rev(j, tasks[i].deadline - 1, 0) {
+                if (a[j].taskId == -1) {
+					a[j] = tasks[i];
+					break;
+				}
+			}
+        }
+	}
+
+	int maxProfit = 0;
+    rep(i, 0, n) {
+        if (a[i].profit != -1) {
+			maxProfit += a[i].profit;
+		}
+	}
+	rep(i, 0, n) {
+		cout << "Task ID: " << a[i].taskId << " "
+			 << " Deadline: " << a[i].deadline << " Profit: " << a[i].profit << endl;
+	}
+    cout << endl;
+	cout << "Max Profit = " << maxProfit << endl;
 }
 
 int32_t main() {
