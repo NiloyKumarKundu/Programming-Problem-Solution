@@ -116,13 +116,6 @@ void input() {
 
 void solve() {
 	ordered_set ps;
-	ps.insert(1);
-	ps.insert(5);
-	ps.insert(2);
-	ps.insert(5);
-	ps.insert(4);
-	ps.insert(5);
-	cout << *ps.lower_bound(3) << endl;
 }
 
 int32_t main() {
