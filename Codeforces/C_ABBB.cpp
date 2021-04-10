@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include <ext/pb_ds/assoc_container.hpp>
 #define Niloy
 #define int int64_t
 #define MAX 1000
@@ -14,9 +13,6 @@
 #define endl '\n'
 #define llu unsigned long long
 using namespace std;
-using namespace __gnu_pbds;
-// Policy Based Data Structure
-typedef tree< int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update > ordered_set; 
 /* ----------------------------------------------------------------------------------- */
 
 // Input/Output
@@ -93,17 +89,6 @@ struct debugger {
 };
 
 /* ----------------------------------------------------------------------------------- */
-
-/// change ll to any data type
-/// less_equal for multiset increasing order
-/// less for set increasing order
-/// greater_equal for multiset decreasing order
-/// greater for set decreasing order
-
-/// cout<<*X.find_by_order(1)<<endl; // iterator to the k-th largest element
-/// cout<<X.order_of_key(-5)<<endl;  // number of items in a set that are strictly smaller than our item
-
-/* ----------------------------------------------------------------------------------- */
 void input() {
 #ifdef Niloy
     read("input.txt");  
@@ -115,33 +100,27 @@ void input() {
 
 
 void solve() {
-	ordered_set ps;
-	ps.insert(1);
-	ps.insert(2);
-	ps.insert(4);
-	ps.insert(4);
-	ps.insert(5);
-	ps.insert(6);
-
-	auto it = ps.upper_bound(4);
-    if (it != ps.end() && *it == 4) {
-	    ps.erase(it);
-    }
-
-	for (auto a : ps) {
-		cout << a << " ";
+    string str;
+    cin >> str;
+	int stack = 0;
+	rep(i, 0, str.size()) {
+        if (stack && str[i] == 'B') {
+			stack--;
+		} else {
+			stack++;
+		}
 	}
-	cout << endl;
+	cout << stack << endl;
 }
 
 int32_t main() {
     // input();
     // fastInput;
-    solve();
+    // solve();
 
-    // __test {
-    // 	solve();
-    // }
+    __test {
+    	solve();
+    }
 
     // showTime;
     return 0;
