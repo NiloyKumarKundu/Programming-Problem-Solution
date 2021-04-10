@@ -1,3 +1,7 @@
+/*
+    Problem Link: https://acm.timus.ru/problem.aspx?space=1&num=1521
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #define Niloy
@@ -16,7 +20,7 @@
 using namespace std;
 using namespace __gnu_pbds;
 // Policy Based Data Structure
-typedef tree< int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update > ordered_set; 
+typedef tree< int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update > ordered_set; 
 /* ----------------------------------------------------------------------------------- */
 
 // Input/Output
@@ -115,7 +119,24 @@ void input() {
 
 
 void solve() {
+    int n, k;
+	scan2(n, k);
+	ordered_set ps;
+    REP(i, 1, n) {
+		ps.insert(i);
+	}
     
+	int p = 0;
+	while (ps.size() > 0) {
+		p += (k - 1);
+		p %= ps.size();
+		int value = *ps.find_by_order(p);
+		cout << value << " ";
+		ps.erase(value);
+		p = ps.order_of_key(value);
+	}
+
+	cout << endl;
 }
 
 int32_t main() {
