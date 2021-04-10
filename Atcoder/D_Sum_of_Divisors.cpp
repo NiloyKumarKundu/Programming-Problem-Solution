@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #define Niloy
 #define int int64_t
-#define MAX 1000
+#define MAX (int) 1e7 + 10
 #define MOD 1e9
 #define pb push_back
 #define pairs pair<int, int>
@@ -98,20 +98,25 @@ void input() {
 
 /* ----------------------------------------------------------------------------------- */
 
+int cnt[MAX];
 
 void solve() {
     int n;
     scan(n);
-	int res = 0;
-	for (int i = 1; i * i <= n; i++) {
-        if (n % i == 0) {
-			res += (i * i);
-			res += ((n / i) * (n / i));
+    REP(i, 1, n) {
+		for (int j = i; j <= n; j += i) {
+			cnt[j]++;
 		}
 	}
-	// res += (n * n);
+
+	int res = 0;
+	for (int i = 1; i <= n; i++) {
+		res += (i * cnt[i]);
+	}
+    
 	cout << res << endl;
 }
+
 
 int32_t main() {
     // input();
