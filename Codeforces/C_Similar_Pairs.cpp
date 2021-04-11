@@ -103,21 +103,30 @@ void solve() {
 	int n;
 	scan(n);
 	int arr[n + 10];
-    rep(i, 0, n) {
+	int evenCnt = 0, oddCnt = 0;
+	rep(i, 0, n) {
 		scan(arr[i]);
+        if (arr[i] % 2) {
+			oddCnt++;
+		} else {
+			evenCnt++;
+		}
 	}
+    if (evenCnt % 2 == 0 && oddCnt % 2 == 0) {
+		cout << "YES\n";
+		return;
+	}
+
 	sort(arr, arr + n);
 
-	// dbgA(arr, n + 1);
-	for (int i = 0; i < n; i += 2) {
-
-		if (abs(arr[i] - arr[i + 1]) != 1 && (arr[i] != arr[i + 1]) && ((arr[i] % 2 != 0 && arr[i + 1] % 2 == 0) || (arr[i] % 2 == 0 && arr[i + 1] % 2 != 0))) {
-            // dbg(i, arr[i], arr[i + 1]);
-			cout << "NO\n";
+	for (int i = 0; i < n - 1; i++) {
+		if (abs(arr[i] - arr[i + 1]) == 1) {
+			cout << "YES\n";
 			return;
 		}
 	}
-	cout << "YES\n";
+    
+	cout << "NO\n";
 }
 
 int32_t main() {
