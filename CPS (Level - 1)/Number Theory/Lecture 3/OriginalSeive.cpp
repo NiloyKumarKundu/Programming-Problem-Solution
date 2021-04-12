@@ -98,33 +98,42 @@ void input() {
 
 /* ----------------------------------------------------------------------------------- */
 
-/*
-    Time Complexity: O(N*lnN)
-*/
 
 bool isPrime[MAX];
 vi Prime;
 
-void primeGen(int n) {
-	memset(isPrime, 1, sizeof(isPrime));
-	isPrime[1] = 0;
-    REP(i, 2, n) {
-		for (int j = i + i; j <= n; j += i) {
-			isPrime[j] = 0;
-		}
+void primeGen(int n) {      // O(N)
+	for (int i = 3; i <= n; i += 2) {
+		isPrime[i] = 1;
 	}
-    
-    REP(i, 2, n) {
+	isPrime[2] = 1;
+	int sq = sqrt(n);
+
+	for (int i = 3; i <= sq; i += 2) { 
+		if (isPrime[i]) {
+            for (int j = i * i; j <= n; j += (i * 2)) {
+                isPrime[j] = 0;
+            }
+        }
+	}
+
+	Prime.pb(2);
+	for (int i = 3; i <= n; i += 2) {
 		if (isPrime[i]) {
 			Prime.pb(i);
 		}
 	}
 }
 
+
 void solve() {
-	primeGen(20);
-    for (auto i : Prime) {
+	primeGen(MAX);
+	int k = 0;
+	for (auto i : Prime) {
+        if (k == 100)
+			break;
 		cout << i << " ";
+		k++;
 	}
 	cout << endl;
 }
