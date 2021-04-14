@@ -100,31 +100,32 @@ void input() {
 
 
 void solve() {
-    int n, k;
-	scan2(n, k);
-	string str = "";
-	int i = 0;
-	while (true) {
-		if (str.length() >= n) {
-			break;
-		} else {
-			char x = (char) 'a' + (i % k);
-			str += x;
-			// dbg(str);
-		}
-		i++;
+    int n, x;
+	scan2(n, x);
+	int arr[n];
+    rep(i, 0, n) {
+		scan(arr[i]);
 	}
-	cout << str << endl;
+	sort(arr, arr + n, greater<int>());
+	int sum = 0, count = 1, ans = 0;
+    rep(i, 0, n) {
+		sum += arr[i];
+        if (((sum * 1.0) / count) >= x) {
+			ans++;
+		}
+		count++;
+	}
+	cout << ans << endl;
 }
 
 int32_t main() {
     // input();
     // fastInput;
-    solve();
+    // solve();
 
-    // __test {
-    // 	solve();
-    // }
+    __test {
+    	solve();
+    }
 
     // showTime;
     return 0;
