@@ -100,18 +100,52 @@ void input() {
 
 
 void solve() {
-    
-    
+	int n;
+	scan(n);
+	n += 2;
+	// dbg(n);
+	int arr[n + 3];
+	int sum = 0;
+	REP(i, 1, n) {
+		scan(arr[i]);
+	}
+    sort(arr + 1, arr + n + 1);
+	// dbgA(arr, n + 1);
+
+	rep(i, 1, n) {
+        sum += arr[i];
+	}
+
+	rep(i, 1, n) {
+        if (sum - arr[i] == arr[n]) {
+			swap(arr[i], arr[n]);
+			swap(arr[i], arr[n - 1]);
+            REP(i, 1, n - 2) {
+				cout << arr[i] << " ";
+			}
+			cout << endl;
+			return;
+		}
+	}
+
+    if (sum - arr[n - 1] != arr[n - 1]) {
+		cout << -1 << endl;
+	} else {
+        REP(i, 1, n - 2) {
+			cout << arr[i] << " ";
+		}
+		cout << endl;
+	}
 }
 
 int32_t main() {
     // input();
     // fastInput;
-    solve();
+    // solve();
 
-    // __test {
-    // 	solve();
-    // }
+    __test {
+    	solve();
+    }
 
     // showTime;
     return 0;
