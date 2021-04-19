@@ -100,24 +100,8 @@ void input() {
 
 
 void solve() {
-    int n, k;
-    scan2(n, k);
-    string str;
-	cin >> str;
-	int cnt = 0;
-	map<char, int> mp;
-	rep(i, 0, n - 1) {
-		if (mp[str[i]] == 0) {
-			mp[str[i]]++;
-		} else if (mp[str[i]] && str[i] != str[i - 1]) {
-			cnt++;
-		}
-	}
-	if (cnt > k) {
-		cout << "YES\n";
-	} else {
-		cout << "NO\n";
-	}
+    
+    
 }
 
 int32_t main() {
