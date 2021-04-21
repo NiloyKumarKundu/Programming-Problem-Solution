@@ -100,42 +100,26 @@ void input() {
 
 
 void solve() {
-    int n;
-    string a, b;
-	cin >> n >> a >> b;
-
-    if (a == b) {
-		cout << "YES\n";
-		return;
-	}
-
-	int one = 0, zero = 0;
+    int n, k;
+    scan2(n, k);
+	int arr[n];
 	rep(i, 0, n) {
-        if (a[i] == '1') {
-			one++;
-		} else {
-			zero++;
+		scan(arr[i]);
+	}
+	int l = 0, r = n - 1;
+	rep(i, 0, n) {
+        while (k > 0 && arr[l] > 0) {
+			arr[l]--;
+			arr[r]++;
+			k--;
 		}
+		l++;
 	}
 
-	bool changed = false;
-
-    rev(i, n, 0) {
-        if ((a[i] != b[i] && !changed) || (a[i] == b[i] && changed)) {
-            if (zero == one) {
-				changed = !changed;
-			} else {
-				cout << "NO\n";
-				return;
-			}
-		}
-        if (a[i] == '1') {
-			one--;
-		} else {
-			zero--;
-		}
+	rep(i, 0, n) {
+		cout << arr[i] << " ";
 	}
-	cout << "YES\n";
+	cout << endl;
 }
 
 int32_t main() {
@@ -150,5 +134,3 @@ int32_t main() {
     // showTime;
     return 0;
 }
-
-

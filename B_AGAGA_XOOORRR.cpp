@@ -100,42 +100,35 @@ void input() {
 
 
 void solve() {
-    int n;
-    string a, b;
-	cin >> n >> a >> b;
-
-    if (a == b) {
-		cout << "YES\n";
-		return;
-	}
-
-	int one = 0, zero = 0;
+	int n;
+	scan(n);
+	int arr[n], brr[n];
 	rep(i, 0, n) {
-        if (a[i] == '1') {
-			one++;
-		} else {
-			zero++;
-		}
+		scan(arr[i]);
+		brr[i] = arr[i];
+	}
+	int x = 0;
+	rep(i, 0, n - 1) {
+		int ans = arr[i] ^ arr[i + 1];
+		arr[i] = ans;
+	}
+	bool flag = false, temp = false;
+	rev(i, n, 1) {
+		int ans = arr[i] ^ arr[i - 1];
+		arr[i] = ans;
 	}
 
-	bool changed = false;
-
-    rev(i, n, 0) {
-        if ((a[i] != b[i] && !changed) || (a[i] == b[i] && changed)) {
-            if (zero == one) {
-				changed = !changed;
-			} else {
-				cout << "NO\n";
-				return;
-			}
-		}
-        if (a[i] == '1') {
-			one--;
-		} else {
-			zero--;
-		}
+	if (arr[n - 1] == arr[n - 2]) {
+		flag = true;
 	}
-	cout << "YES\n";
+    if (brr[0] == brr[1]) {
+		temp = true;
+	}
+    if (flag || temp) {
+		cout << "YES\n";
+	} else {
+		cout << "NO\n";
+	}
 }
 
 int32_t main() {
@@ -150,5 +143,3 @@ int32_t main() {
     // showTime;
     return 0;
 }
-
-
