@@ -102,33 +102,36 @@ void input() {
 void solve() {
 	int n;
 	scan(n);
-	int arr[n], brr[n];
+	int arr[n], pre[n];
 	rep(i, 0, n) {
 		scan(arr[i]);
-		brr[i] = arr[i];
-	}
-	int x = 0;
-	rep(i, 0, n - 1) {
-		int ans = arr[i] ^ arr[i + 1];
-		arr[i] = ans;
-	}
-	bool flag = false, temp = false;
-	rev(i, n, 1) {
-		int ans = arr[i] ^ arr[i - 1];
-		arr[i] = ans;
 	}
 
-	if (arr[n - 1] == arr[n - 2]) {
-		flag = true;
+	pre[0] = arr[0];
+	rep(i, 1, n) {
+		pre[i] = arr[i] ^ pre[i - 1];
 	}
-    if (brr[0] == brr[1]) {
-		temp = true;
+	bool flag = false;
+
+	rep(i, 0, n - 1) {
+		if (pre[i] == (pre[i] ^ pre[n - 1])) {
+			cout << "YES\n";
+			return;
+		}
 	}
-    if (flag || temp) {
-		cout << "YES\n";
-	} else {
-		cout << "NO\n";
+
+	rep(i, 0, n - 1) {
+		int start = pre[i];
+		rep(j, i + 1, n - 1) {
+			int mid = pre[j] ^ pre[i];
+			int end = pre[j] ^ pre[n - 1];
+			if (start == mid && mid == end) {
+				cout << "YES\n";
+				return;
+			}
+		}
 	}
+	cout << "NO\n";
 }
 
 int32_t main() {
