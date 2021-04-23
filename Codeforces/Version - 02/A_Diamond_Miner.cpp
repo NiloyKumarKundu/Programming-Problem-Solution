@@ -4,7 +4,7 @@
 #define MAX 1000
 #define MOD 1e9
 #define pb push_back
-#define pairs pair<int, int>
+#define pairs pair<double, double>
 #define vi vector<int>
 #define vb vector<bool>
 #define vii vector<pairs>
@@ -22,7 +22,7 @@ using namespace std;
 #define mem(a, b) memset(a, b, sizeof(a))
 
 // Fractional Number
-#define fraction()        cout.unsetf(ios::floatfield); cout.precision(10); cout.setf(ios::fixed, ios::floatfield);
+#define fraction()        cout.unsetf(ios::floatfield); cout.precision(15); cout.setf(ios::fixed, ios::floatfield);
 
 #define scan(a)			  scanf("%lld", &a);
 #define scan2(a, b)		  scanf("%lld %lld", &a, &b);
@@ -98,19 +98,50 @@ void input() {
 
 /* ----------------------------------------------------------------------------------- */
 
+int compare(pairs x, pairs y) {
+	return x.first < y.first;
+}
 
 void solve() {
-    
+	int n;
+	scan(n);
+	vector<double> miners, mines;
+	int k = n * 2;
+	while (k--) {
+		double x, y;
+		scanD2(x, y);
+		if (x == 0) {
+			mines.pb(abs(y));
+		}
+        if (y == 0) {
+			miners.pb(abs(x));
+		}
+	}
+	sort(miners.begin(), miners.end());
+	sort(mines.begin(), mines.end());
+	// dbgA(miners, miners.size());
+	// dbgA(mines, mines.size());
+	double res = 0;
+	rep(i, 0, n) {
+		double x = miners[i];
+		double y = mines[i];
+		double sum = (x * x + y * y);
+		sum = sqrt(sum);
+		res += sum;
+	}
+	fraction();
+	cout << res << endl;
 }
 
 int32_t main() {
     // input();
     // fastInput;
-    solve();
+    // solve();
 
-    // __test {
-    // 	solve();
-    // }
+    __test {
+		// Cases;
+		solve();
+	}
 
     // showTime;
     return 0;
