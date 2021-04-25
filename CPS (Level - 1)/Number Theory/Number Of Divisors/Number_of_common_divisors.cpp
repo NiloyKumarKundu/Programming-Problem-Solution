@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #define Niloy
 #define int int64_t
-#define MAX 1000
+#define MAX (int) 1e6 + 123
 #define MOD 1e9
 #define pb push_back
 #define pairs pair<int, int>
@@ -99,18 +99,72 @@ void input() {
 /* ----------------------------------------------------------------------------------- */
 
 
-void solve() {
+bitset<MAX> isPrime;
+vi Prime;
+
+void primeGen(int n) {      // O(N)
+	for (int i = 3; i <= n; i += 2) {
+		isPrime[i] = 1;
+	}
+	isPrime[2] = 1;
+	int sq = sqrt(n);
+
+	for (int i = 3; i <= sq; i += 2) { 
+		if (isPrime[i]) {
+            for (int j = i * i; j <= n; j += (i * 2)) {
+                isPrime[j] = 0;
+            }
+        }
+	}
+
+	Prime.pb(2);
+	for (int i = 3; i <= n; i += 2) {
+		if (isPrime[i]) {
+			Prime.pb(i);
+		}
+	}
+}
+
+int NOD(int n) {
+	int ans = 1;
     
+    for (auto p : Prime) {
+        if (p * p > n) {
+			break;
+		}
+        if (n % p == 0) {
+			int cnt = 1;
+			while (n % p == 0) {
+				cnt++;
+				n /= p;
+			}
+			ans *= cnt;
+		}
+	}
+    if (n > 1) {
+		ans *= 2;
+	}
+
+	return ans;
+}
+
+void solve() {
+	int a, b;
+	scan2(a, b);
+	int GCD = gcd(a, b);
+	cout << NOD(GCD) << endl;
 }
 
 int32_t main() {
     // input();
     // fastInput;
-    solve();
+    int lim = 1e6;
+	primeGen(lim);
+    // solve();
 
-    // __test {
-    // 	solve();
-    // }
+    __test {
+    	solve();
+    }
 
     // showTime;
     return 0;
