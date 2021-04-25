@@ -98,61 +98,14 @@ void input() {
 
 /* ----------------------------------------------------------------------------------- */
 
+// Concept: Parfect square.
 
-bitset<MAX> isPrime;
-vi Prime;
-
-void primeGen(int n) {      // O(N)
-	for (int i = 3; i <= n; i += 2) {
-		isPrime[i] = 1;
-	}
-	isPrime[2] = 1;
-	int sq = sqrt(n);
-
-	for (int i = 3; i <= sq; i += 2) { 
-		if (isPrime[i]) {
-            for (int j = i * i; j <= n; j += (i * 2)) {
-                isPrime[j] = 0;
-            }
-        }
-	}
-
-	Prime.pb(2);
-	for (int i = 3; i <= n; i += 2) {
-		if (isPrime[i]) {
-			Prime.pb(i);
-		}
-	}
-}
-
-int NOD(int n) {
-	int ans = 1;
-    
-    for (auto p : Prime) {
-        if (p * p > n) {
-			break;
-		}
-        if (n % p == 0) {
-			int cnt = 1;
-			while (n % p == 0) {
-				cnt++;
-				n /= p;
-			}
-			ans *= cnt;
-		}
-	}
-    if (n > 1) {
-		ans *= 2;
-	}
-
-	return ans;
-}
+map<int, bool> isPerfectSquare;
 
 void solve() {
 	int n;
 	scan(n);
-	int nod = NOD(n);
-    if (nod % 2) {
+	if (isPerfectSquare[n]) {
 		cout << "YES\n";
 	} else {
 		cout << "NO\n";
@@ -162,11 +115,13 @@ void solve() {
 int32_t main() {
     // input();
     // fastInput;
-    int lim = 3e5;
-	primeGen(lim);
     // solve();
+	int lim = 32e4;
+	REP(i, 1, lim) {
+		isPerfectSquare[i * i] = true;
+	}
 
-    __test {
+	__test {
     	solve();
     }
 
