@@ -108,6 +108,7 @@ vi Prime;
 void primeGen(int n) {
 	memset(isPrime, 1, sizeof(isPrime));
 	isPrime[1] = 0;
+    // Harmonic Series
     REP(i, 2, n) {
 		for (int j = i + i; j <= n; j += i) {
 			isPrime[j] = 0;
