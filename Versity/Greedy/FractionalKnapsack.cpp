@@ -100,23 +100,29 @@ void input() {
 
 class Item {
     public:
-	int no, wight, value;
+	int no, weight, value;
 };
 
 bool comparison(Item t1, Item t2) {
-	return (t1.value / t1.wight) > (t2.value / t2.wight);
+	return (t1.value / t1.weight) > (t2.value / t2.weight);
 }
 
 int greedyFractionalKnapsack(int W, Item items[], int n) {
 	sort(items, items + n, comparison);
+
+    // print the order value
+	// for (int i = 0;  i < n; i++) {
+	// 	cout << items[i].no << " " << items[i].weight << " " << items[i].value << endl;
+	// }
+
 	int w = W;
 	int i = 0;
     int profit = 0;
 	while (w > 0 && i < n) {
-		double xi = (w * 1.0) / items[i].wight >= 1 ? 1 : (w * 1.0) / items[i].wight;
-		dbg(xi);
-		w = w - (xi * items[i].wight);
-		dbg(w);
+		double xi = (w * 1.0) / items[i].weight >= 1 ? 1 : (w * 1.0) / items[i].weight;
+		// dbg(xi);
+		w = w - (xi * items[i].weight);
+		// dbg(w);
 		profit += (xi * items[i].value);
 		i++;
 	}
@@ -124,9 +130,9 @@ int greedyFractionalKnapsack(int W, Item items[], int n) {
 }
 
 void solve() {
-	Item arr[] = {{1, 2, 40}, {2, 2, 50}, {3, 1, 50}};
+	Item arr[] = {{1, 10, 60}, {2, 20, 100}, {3, 30, 120}};
 	int n = sizeof(arr) / sizeof(arr[0]);
-	cout << greedyFractionalKnapsack(4, arr, n) << endl;
+	cout << greedyFractionalKnapsack(50, arr, n) << endl;
 }
 
 int32_t main() {
