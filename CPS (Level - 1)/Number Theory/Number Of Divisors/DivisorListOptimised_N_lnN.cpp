@@ -109,6 +109,7 @@ void solve() {
 	int n;
 	scan(n);
 
+    // Harmonik Series
     REP(i, 1, n) {
 		for (int j = i; j <= n; j += i) {
 			divisors[j].pb(i);
