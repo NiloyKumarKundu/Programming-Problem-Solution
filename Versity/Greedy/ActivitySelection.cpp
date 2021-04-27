@@ -104,7 +104,7 @@ public:
 	int fi;
 };
 
-int inc(Time a, Time b) {
+bool inc(Time a, Time b) {
 	return a.fi < b.fi;
 }
 
@@ -119,9 +119,12 @@ void solve() {
 		T[i].fi = b;
 	}
 	sort(T, T + n, inc);
+
 	int ans = 1, i = 0;
+	
 	vector<Time> A;
 	A.pb({T[i].si, T[i].fi});
+
 	for (int j = 1; j < n; j++) {
 		if (T[j].si >= T[i].fi) {
 			ans++;
