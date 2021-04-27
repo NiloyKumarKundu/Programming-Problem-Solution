@@ -119,6 +119,11 @@ void solve() {
 	}
 	sort(tasks, tasks + size, compare);
 
+    // Print the sorted array based on profit
+	rep(i, 0, size) {
+		cout << tasks[i].taskId << " " << tasks[i].deadline << " " << tasks[i].profit << endl;
+	}
+
 	Task a[n];
 	memset(a, -1, sizeof(a));
 
