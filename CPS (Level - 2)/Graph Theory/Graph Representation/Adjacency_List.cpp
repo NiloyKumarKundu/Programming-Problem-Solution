@@ -108,7 +108,7 @@ void solve() {
 		int u, v;
 		scan2(u, v);
 		adj[u].pb(v);
-		// adj[v].pb(u);
+		adj[v].pb(u);
 	}
 
     REP(i, 1, n) {
