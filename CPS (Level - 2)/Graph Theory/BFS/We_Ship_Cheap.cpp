@@ -141,20 +141,19 @@ void solve() {
 		cin >> s >> t;
 		bfs(s);
 
+		if (level[t] == 0) {
+			cout << "No route\n";
+			continue;
+		}
+		
 		vector<pair<string, string>> ans;
-
         while (!parent[t].empty()) {
 			ans.pb({parent[t], t});
 			t = parent[t];
 		}
-
-        if (ans.size() == 0) {
-			cout << "No route\n";
-		} else {
-			reverse(all(ans));
-            for (auto u : ans) {
-                cout << u.first << " " << u.second << endl;
-            }
+		reverse(all(ans));
+		for (auto u : ans) {
+			cout << u.first << " " << u.second << endl;
 		}
 	}
 }
