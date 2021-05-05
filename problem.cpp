@@ -1,122 +1,99 @@
-#include <bits/stdc++.h>
-#define Niloy
-#define int int64_t
-#define mx (int) 1e6
-#define MOD 10000007
-#define pb push_back
-#define pairs pair<int, int>
-#define vi vector<int>
-#define vb vector<bool>
-#define vii vector<pairs>
-#define lb lower_bound
-#define ub upper_bound
-#define endl '\n'
-#define llu unsigned long long
+#include <iostream>
+#include <math.h>
+#include <algorithm>
+#include <climits>
+#include <string.h>
+#include <cstdio>
+#include <stack>
+#include <vector>
+#include <queue>
+#include <map>
+#include <cmath>
+#include <set>
+#include <list>
+#include <unordered_map>
 using namespace std;
-/* ----------------------------------------------------------------------------------- */
 
-// Input/Output
-#define fastInput ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+#define dbgA2(A, n, m)  {cout<<"-->"<<#A<<"=\n";for(int i = 0; i < n; i++){for(int j = 0; j < n; j++){cout<<A[i][j]<<" ";}cout<<"\n";}cout<<"\n";}
+#define dbgA(A, n)      {cout<<"-->"<<#A<<"=(";for(int i = 0; i < n; i++)cout<<A[i]<<" ";cout<<")\n";}
+#define dbg(args...)    {string sss(#args);sss+=',';cout<<"-->";debugger::call(sss.begin(), sss.end(), args);cout<<"\n";}
+
+#define fo(i, j,n) for(i=j;i<n;i++)
+#define ll long long
+#define si(x)	scanf("%d",&x)
+#define sl(x)	scanf("%lld",&x)
+#define ss(s)	scanf("%s",s)
+#define pis(x)	printf("%d ",x)
+#define pi(x)	printf("%d",x)
+#define pl(x)	printf("%lld",x)
+#define ps(s)	printf("%s",s)
+#define lb()   printf("\n")
 #define all(x) x.begin(), x.end()
-#define square(a) (a * a)
-#define mem(a, b) memset(a, b, sizeof(a))
-
-// Fractional Number
-#define fraction()        cout.unsetf(ios::floatfield); cout.precision(10); cout.setf(ios::fixed, ios::floatfield);
-
-#define scan(a)			  scanf("%lld", &a);
-#define scan2(a, b)		  scanf("%lld %lld", &a, &b);
-#define scan3(a, b, c)	  scanf("%lld %lld %lld", &a, &b, &c);
-#define scan4(a, b, c, d) scanf("%lld %lld %lld %lld", &a, &b, &c, &d);
- 
-#define scanD(a)		  scanf("%lf", &a);
-#define scanD2(a, b)	  scanf("%lf %lf", &a, &b);
-#define scanD3(a, b, c)	  scanf("%lf %lf %lf", &a, &b, &c);
-#define scanD4(a, b, c, d)scanf("%lf %lf %lf %lf", &a, &b, &c, &d);
+#define clr(x) memset(x, 0, sizeof(x))
+#define sortall(x) sort(all(x))
+typedef pair<int, int>	pii;
+typedef pair<ll, ll>	pl;
+typedef vector<int>		vi;
+typedef vector<ll>		vl;
+typedef vector<pii>		vpii;
+typedef vector<pl>		vpl;
+typedef vector<vi>		vvi;
+typedef vector<vl>		vvl;
 
 
-#define print(a)		   printf("%lld\n", a);
-#define print2(a, b)	   printf("%lld %lld\n", a, b);
-#define print3(a, b, c)	   printf("%lld %lld %lld\n", a, b, c);
-#define print4(a, b, c, d) printf("%lld %lld %lld %lld\n", a, b, c, d);
- 
-#define printD(a)		   printf("%lf\n", a);
-#define printD2(a, b)	   printf("%lf %lf\n", a, b);
-#define printD3(a, b, c)   printf("%lf %lf %lf\n", a, b, c);
-#define printD4(a, b, c, d)printf("%lf %lf %lf %lf\n", a, b, c, d);
-#define printTwoD(a)	   printf("%.2lf\n", a);
-
-// File I/O
-#define read(x)	 freopen(x, "r", stdin);
-#define write(x) freopen(x, "w", stdout);
- 
-// Loops
-#define rep(i, a, n) for (int i = a; i < n; i++)
-#define REP(i, a, n) for (int i = a; i <= n; i++)
-#define rev(i, n, a) for (int i = n - 1; i >= a; i--)
-#define REV(i, n, a) for (int i = n; i >= a; i--)
-#define inputArray(a,n) rep(i, 0, n) cin >> a[i];
-#define copyArray(a,temp,n) rep(i, 0, n) temp[i]=a[i];
-#define printArray(a,n) rep(i, 0, n) cout << a[i] << " "; cout << endl;
- 
-/* ----------------------------------------------------------------------------------- */
- 
-#define Cases  cout << "Case " << ++Case << ": ";
-#define __test int tt; int Case=0; cin >> tt; while(tt--)
-#define showTime cerr << "time = " << (clock() / CLOCKS_PER_SEC) << " sec" << '\n';
- 
-#define dbgA2(A, n, m) {cout<<"--> "<<#A<<" = \n";rep(i, 0, n){rep(j, 0, m){cout<<A[i][j]<<"";}cout<<"\n";}cout<<"\n";}
-#define dbgA(A, n) {cout<<" --> "<<#A<<" = (";rep(i, 0, n)cout<<A[i]<<" ";cout<<")\n";}
-#define dbg(args...) {string sss(#args);sss+=',';cout<<" --> ";debugger::call(all(sss), args);cout<<"\n";}
- 
-/* ----------------------------------------------------------------------------------- */
- 
-int gcd(int n, int m) { return m ? gcd(m, n % m) : n; }
-int lcm(int n, int m) { return n / gcd(n, m) * m; }
- 
 struct debugger {
     typedef string::iterator si;
+
     static void call(si it, si ed) {}
+
     template<typename T, typename ... aT>
     static void call(si it, si ed, T a, aT... rest) {
         string b;
-        for(; *it!=','; ++it)
-            if(*it!=' ')
-                b+=*it;
+        for (; *it != ','; ++it)
+            if (*it != ' ')
+                b += *it;
         cout << b << "=" << a << " ";
         call(++it, ed, rest...);
     }
 };
 
-/* ----------------------------------------------------------------------------------- */
-void input() {
-#ifdef Niloy
-    read("input.txt");  
-    write("output.txt");
-#endif
-}
 
-/* ----------------------------------------------------------------------------------- */
-
-int fact[mx + 123];
-
-void solve() {
-	fact[1] = 1;
-	REP(i, 2, mx + 5) {
-		fact[i] = ((fact[i - 1] % 10000007) * (i % 10000007)) % 10000007;
+int main(){
+    #ifndef ONLINE_JUDGE
+        freopen("input.txt", "r", stdin);
+        freopen("output.txt", "w", stdout);
+    #endif
+    
+	int t; 
+	si(t);
+	while (t--) {
+		int n;
+		si(n);
+		if (n == 1) {
+			cout << 1 << "\n";
+		} else if (n == 2) {
+			cout << -1 << "\n";
+		} else {
+			int state = 1, count = 0;
+			for (int i = 0; i < n; i++) {
+				for (int j = 0; j < n; j++) {
+					int ans;
+					if (state == 1) {
+						ans = (count + 1) * 2 - 1; 
+					} else {
+						ans = (count + 1) * 2;
+					}
+					count++;
+					printf("%d ", ans);
+					if (count == (n * n) / 2 + 1) {
+						count = 0;
+						state *= -1;
+					}
+				}
+				printf("\n");
+			}
+		}
 	}
-	cout << fact[100000] << endl;
-}
 
-int32_t main() {
-    // input();
-    // fastInput;
-    solve();
-
-    // __test {
-    // 	solve();
-    // }
-
-    // showTime;
     return 0;
 }
