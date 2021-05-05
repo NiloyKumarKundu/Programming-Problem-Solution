@@ -1,7 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
+char name[1000];
+int w[1000], v[1000];
 
-void test(int w[], int v[], int n, int W) {
+void Knapsack(int w[], int v[], int n, int W) {
 	int P[n + 1][W + 1];
 	for (int w = 0; w <= W; w++) {
 		P[0][w] = 0;
@@ -26,20 +28,27 @@ void test(int w[], int v[], int n, int W) {
 			}
 		}
 	}
-
-	for (int i = 0; i <= n; i++) {
-		for (int w = 0; w <= W; w++) {
-			cout << P[i][w] << " ";
-		}
-		cout << endl;
-	}
+	
 	cout << P[n][W] << endl;
+	int res = P[n][W];
+	int a = W;
+    for (int i = n; i > 0 && res > 0; i--) {
+        if (res == P[i - 1][a])
+            continue;       
+        else {
+			cout << name[i - 1] << endl;
+			res = res - v[i - 1];
+			a = a - w[i - 1];
+		}
+	}
 }
 
 int main() {
-	int w[] = {2, 1, 3, 2};
-	int v[] = {12, 10, 20, 15};
-	int W = 5;
-	int n = sizeof(w) / sizeof(w[0]);
-	test(w, v, n, W);
+	int c, n;
+	cin >> c >> n;
+	
+	for (int i = 0; i < n; i++) {
+		cin >> name[i] >> w[i] >> v[i];
+	}
+	Knapsack(w, v, n, c);
 }
