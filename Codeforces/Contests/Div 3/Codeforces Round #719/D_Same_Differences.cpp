@@ -106,25 +106,20 @@ void input() {
 void solve() {
 	int n;
 	scan(n);
-	int a[n];
-	
-    rep(i, 0, n) {
+	int a[n + 10];
+	int cnt = 0;
+
+	REP(i, 1, n) {
 		scan(a[i]);
 	}
 
-	int ans = 0;
-	rev(i, n, 0) {
-		rep(j, 0, n) {
-            if (j >= i) {
-				break;
-			}
-			if (a[i] - a[j] == i - j) {
-                // dbg(a[i], a[j], i, j)
-				ans++;
-			}
-		}
+	map<int, int> mp;
+
+	REP(i, 1, n) {
+		cnt += mp[a[i] - i];
+		mp[a[i] - i]++;
 	}
-	cout << ans << endl;
+	cout << cnt << endl;
 }
 
 int32_t main() {
