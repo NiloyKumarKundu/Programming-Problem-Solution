@@ -104,17 +104,26 @@ void input() {
 
 
 void solve() {
-    
+    int a, b;
+	scan2(a, b);
+    if (b == 1) {
+		cout << "NO\n";
+		return;
+	}
+	cout << "YES\n";
+	int x = 1, z = b * 10;
+	int y = z - x;
+	cout << a * x << " " << a * y << " " << a * z << endl;
 }
 
 int32_t main() {
     // input();
     // fastInput;
-    solve();
+    // solve();
 
-    // __test {
-    // 	solve();
-    // }
+    __test {
+    	solve();
+    }
 
     // showTime;
     return 0;
