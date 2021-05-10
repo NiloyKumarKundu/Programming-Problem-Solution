@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #define Niloy
 #define int int64_t
-#define MAX (int) 1e6 + 123
+#define mx (int) 1e5 + 123
 #define MOD 1e9
 #define pb push_back
 #define pairs pair<int, int>
@@ -45,6 +45,10 @@ using namespace std;
 #define printD3(a, b, c)   printf("%lf %lf %lf\n", a, b, c);
 #define printD4(a, b, c, d)printf("%lf %lf %lf %lf\n", a, b, c, d);
 #define printTwoD(a)	   printf("%.2lf\n", a);
+
+// Direction Array
+int dx[] = {0, 0, 1, -1, 1, 1, -1, -1};
+int dy[] = {1, -1, 0, 0, 1, -1, 1, -1};
 
 // File I/O
 #define read(x)	 freopen(x, "r", stdin);
@@ -99,69 +103,46 @@ void input() {
 /* ----------------------------------------------------------------------------------- */
 
 
-bitset<MAX> isPrime;
-vi Prime;
-
-void primeGen(int n) {      // O(N)
-	for (int i = 3; i <= n; i += 2) {
-		isPrime[i] = 1;
-	}
-	isPrime[2] = 1;
-	int sq = sqrt(n);
-
-	for (int i = 3; i <= sq; i += 2) { 
-		if (isPrime[i]) {
-            for (int j = i * i; j <= n; j += (i * 2)) {
-                isPrime[j] = 0;
-            }
-        }
-	}
-
-	Prime.pb(2);
-	for (int i = 3; i <= n; i += 2) {
-		if (isPrime[i]) {
-			Prime.pb(i);
+void solve() {
+    int n, d;
+	scan2(n, d);
+	string s;
+	cin >> s;
+	int cnt = 0;
+	int i;
+	bool flag = false;
+	for (i = 0; i < s.length();) {
+		int x = i + d;
+        while (s[x] != '1') {
+			x--;
+            if (x < 0) {
+				flag = true;
+				break;
+			}
 		}
-	}
-}
-
-int NOD(int n) {
-	int ans = 1;
-    
-    for (auto p : Prime) {
-        if (p * p > n) {
+        if (flag) {
 			break;
 		}
-        if (n % p == 0) {
-			int cnt = 1;
-			while (n % p == 0) {
-				cnt++;
-				n /= p;
-			}
-			ans *= cnt;
+		i = x;
+		cnt++;
+        if (i == n -1) {
+			break;
+		}
+        if (cnt == 10000) {
+			break;
 		}
 	}
-    if (n > 1) {
-		ans *= 2;
-	}
 
-	return ans;
-}
-
-void solve() {
-	int arr[] = {1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 24, 30, 40, 60, 120};
-	int sum = 0;
-    rep(i, 0, 16) {
-		sum += NOD(arr[i]);
+	if (i != n - 1) {
+		cout << -1 << endl;
+	} else {
+		cout << cnt << endl;
 	}
-	cout << sum << endl;
 }
 
 int32_t main() {
     // input();
     // fastInput;
-    int lim = 1e6;
-	primeGen(lim);
     solve();
 
     // __test {
