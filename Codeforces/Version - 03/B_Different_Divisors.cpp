@@ -145,3 +145,19 @@ int32_t main() {
     // showTime;
     return 0;
 }
+
+
+
+/*
+
+	FRC -> 
+	real ip price
+	laganor cost
+	bandwidth
+	game server
+	movie server
+
+*/
+
+
+
