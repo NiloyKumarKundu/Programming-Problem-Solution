@@ -119,9 +119,11 @@ int modPow(int b, int p) {
 }
 
 void solve() {
-	int n;
-	scan(n);
-	cout << modPow(2, n) << endl;
+	int a, b;
+	scan2(a, b);
+	cout << ((a % MOD) * (modPow(7, MOD - 2))) % MOD << endl;
+
+	// b^-1 = (b^(MOD - 2)) % MOD;
 }
 
 int32_t main() {
