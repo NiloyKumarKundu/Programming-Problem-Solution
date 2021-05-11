@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 #define Niloy
 #define int int64_t
-#define mx (int) 1e5 + 123
-#define MOD (int) 1e9 + 7
+#define mx (int) 1e6 + 123
+#define MOD (int) 1000003
 #define pb push_back
 #define pairs pair<int, int>
 #define vi vector<int>
@@ -86,20 +86,37 @@ void input() {
 
 /* ----------------------------------------------------------------------------------- */
 
+int fact[mx];
+int invFact[mx];
+
+void init() {
+	fact[0] = 1;
+	invFact[0] = 1;
+	int limit = 1e6;
+    REP(i, 1, limit) {
+		fact[i] = modMul(fact[i - 1], i);
+		invFact[i] = (modInverse(fact[i]) % MOD);
+	}
+}
+
 void solve() {
-    
+	int n, k;
+	cin >> n >> k;
+	int ans = modMul(modMul(fact[n], invFact[n - k]), invFact[k]);
+	cout << ans << endl;
 }
 
 int32_t main() {
     // input();
     fastInput;
-    solve();
+    // solve();
 
-    // __test {
-    // 	Cases;
-    // 	solve();
-    // }
+	init();
+	__test {
+		Cases;
+		solve();
+	}
 
-    // showTime;
+	// showTime;
     return 0;
 }
