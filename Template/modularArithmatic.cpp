@@ -24,6 +24,15 @@ using namespace std;
 // Fractional Number
 #define fraction()        cout.unsetf(ios::floatfield); cout.precision(10); cout.setf(ios::fixed, ios::floatfield);
 
+// Modular Arithmatic
+inline void normal(int &a) { a %= MOD; (a < 0) && (a += MOD); }
+inline int modMul(int a, int b) { a %= MOD, b %= MOD; normal(a), normal(b); return (a*b)%MOD; }
+inline int modAdd(int a, int b) { a %= MOD, b %= MOD; normal(a), normal(b); return (a+b)%MOD; }
+inline int modSub(int a, int b) { a %= MOD, b %= MOD; normal(a), normal(b); a -= b; normal(a); return a; }
+inline int modPow(int b, int p) { int r = 1; while(p) { if(p&1) r = modMul(r, b); b = modMul(b, b); p >>= 1; } return r; }
+inline int modInverse(int a) { return modPow(a, MOD-2); }
+inline int modDiv(int a, int b) { return modMul(a, modInverse(b)); }
+
 // Direction Array
 int dx[] = {0, 0, 1, -1, 1, 1, -1, -1};
 int dy[] = {1, -1, 0, 0, 1, -1, 1, -1};
