@@ -2,7 +2,7 @@
 #define Niloy
 #define int int64_t
 #define mx (int) 1e6 + 123
-#define MOD (int) 1e9 + 7
+#define MOD (int) 1000003
 #define pb push_back
 #define pairs pair<int, int>
 #define vi vector<int>
@@ -46,9 +46,6 @@ int dy[] = {1, -1, 0, 0, 1, -1, 1, -1};
 #define REP(i, a, n) for (int i = a; i <= n; i++)
 #define rev(i, n, a) for (int i = n - 1; i >= a; i--)
 #define REV(i, n, a) for (int i = n; i >= a; i--)
-#define inputArray(a,n) rep(i, 0, n) cin >> a[i];
-#define copyArray(a,temp,n) rep(i, 0, n) temp[i]=a[i];
-#define printArray(a,n) rep(i, 0, n) cout << a[i] << " "; cout << endl;
  
 /* ----------------------------------------------------------------------------------- */
  
@@ -89,19 +86,36 @@ void input() {
 
 /* ----------------------------------------------------------------------------------- */
 
+int fact[mx];
+int invFact[mx];
+
+void init() {
+	fact[0] = 1;
+	invFact[0] = 1;
+	int limit = 1e6;
+    REP(i, 1, limit) {
+		fact[i] = modMul(fact[i - 1], i);
+		invFact[i] = (modInverse(fact[i]) % MOD);
+	}
+}
+
 void solve() {
-	
+	int n, k;
+	cin >> n >> k;
+	int ans = modMul(modMul(fact[n], invFact[n - k]), invFact[k]);
+	cout << ans << endl;
 }
 
 int32_t main() {
     // input();
     fastInput;
-    solve();
+    // solve();
 
-	// __test {
-	// 	Cases;
-	// 	solve();
-	// }
+	init();
+	__test {
+		Cases;
+		solve();
+	}
 
 	// showTime;
     return 0;

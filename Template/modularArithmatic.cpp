@@ -86,36 +86,19 @@ void input() {
 
 /* ----------------------------------------------------------------------------------- */
 
-int fact[mx];
-int invFact[mx];
-
-void init() {
-	fact[0] = 1;
-	invFact[0] = 1;
-	int limit = 1e6;
-    REP(i, 1, limit) {
-		fact[i] = modMul(fact[i - 1], i);
-		invFact[i] = (modInverse(fact[i]) % MOD);
-	}
-}
-
 void solve() {
-	int n, k;
-	cin >> n >> k;
-	int ans = modMul(modMul(fact[n], invFact[n - k]), invFact[k]);
-	cout << ans << endl;
+	
 }
 
 int32_t main() {
     // input();
     fastInput;
-    // solve();
+    solve();
 
-	init();
-	__test {
-		Cases;
-		solve();
-	}
+	// __test {
+	// 	Cases;
+	// 	solve();
+	// }
 
 	// showTime;
     return 0;
