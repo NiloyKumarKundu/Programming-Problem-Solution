@@ -148,16 +148,5 @@ int32_t main() {
 
 
 
-/*
-
-	FRC -> 
-	real ip price
-	laganor cost
-	bandwidth
-	game server
-	movie server
-
-*/
-
 
 
