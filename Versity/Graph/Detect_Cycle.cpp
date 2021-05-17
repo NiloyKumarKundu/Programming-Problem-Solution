@@ -3,20 +3,22 @@
 #define mx 10000
 using namespace std;
 
-bool vis[mx];
+int vis[mx];
 vector<int> adj[mx];
+set<pair<int,int>> edge;
 
-bool dfs(int u, int p) {
+bool detectCycle(int u, int p) {
 	vis[u] = 1;
-
     for (auto v : adj[u]) {
         if (!vis[v]) {
-			if (dfs(v, u)) {
+			if (detectCycle(v, u)) {
+				edge.insert({u, v});
 				return true;
 			}
 		} else if (v != p) {
+			edge.insert({u, v});
 			return true;
-		}
+		} 
 	}
 	return false;
 }
@@ -28,28 +30,56 @@ int main() {
 		int u, v;
 		cin >> u >> v;
 		adj[u].push_back(v);
-		adj[v].push_back(u);
 	}
-	bool res = dfs(0, 0);
-    if (res) {
-		cout << "Cycle found\n";
+
+	bool flag = true;
+	for (int i = 1; i <= n; i++) {
+		mem(vis, 0);
+		if (!vis[i]) {
+			bool res = detectCycle(i, i);
+			if (res) {
+				flag = false;
+			}
+		}
+	}
+
+	if (flag) {
+		cout << "No cycle found\n";
 	} else {
-		cout << "Cycle not found\n";
+		cout << "Cycle found\n";
+		cout << "Back edges are: \n";
+		for (auto i : edge) {
+			cout << i.first << " " << i.second << endl;
+		}
 	}
 }
-
 
 /*
 Input:
 4 4
-0 1
-0 2
 1 2
+3 1
 2 3
+3 4
 
+
+4 5
+1 2
+3 1
+2 3
+4 3
+1 4
 
 4 3
 0 1
 1 2
 2 3
+
+5 6
+1 2
+2 3
+2 4
+3 4
+4 5
+5 1
 */
