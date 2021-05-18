@@ -82,7 +82,7 @@ int extendedEuclidean(int A, int B, int *X, int *Y) {
 	x1 = 0, y1 = 1;
 	x2 = 1, y2 = 0;
 
-	for (r1 = B, r2 = A; r1 != 0; r2 = r1, r1 = r, x2 = x1, y2 = y1, x1 = x, y1 = y) {
+	for (r2 = A, r1 = B; r1 != 0; r2 = r1, r1 = r, x2 = x1, y2 = y1, x1 = x, y1 = y) {
 		q = r2 / r1;
 		r = r2 % r1;
 		x = x2 - (q * x1);
