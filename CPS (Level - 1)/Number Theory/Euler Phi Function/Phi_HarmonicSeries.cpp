@@ -81,9 +81,7 @@ void input() {
 
 int phi[mx];
 
-void solve() {
-	int n;
-	cin >> n;
+void phiHarmonic(int n) {
     REP(i, 1, n) {
 		phi[i] = i;
 	}
@@ -95,6 +93,11 @@ void solve() {
 			}
 		}
 	}
+}
+
+void solve() {
+	int n;
+	cin >> n;
 
 	cout << phi[n] << endl;
 }
@@ -102,9 +105,12 @@ void solve() {
 int32_t main() {
     // input();
     fastInput;
-    solve();
+    
+	int lim = 1e6;
+	phiHarmonic(lim);
+	solve();
 
-    // __test {
+	// __test {
     // 	solve();
     // }
 
