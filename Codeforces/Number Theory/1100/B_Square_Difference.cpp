@@ -85,9 +85,9 @@ void solve() {
 		return;
 	}
 	int n = a + b;
-
-    rep(i, 2, sqrt(n)) {
-        if (n % i == 0) {
+	int x = sqrt(n) + 1;
+	for (int i = 2; i <= x; i++) {
+		if (n % i == 0) {
 			cout << "NO\n";
 			return;
 		}
