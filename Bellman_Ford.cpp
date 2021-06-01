@@ -36,7 +36,7 @@ class Graph {
 		if (d[v] > d[u] + mat[u][v]) {
 			d[v] = d[u] + mat[u][v];
 			p[v] = u;
-			cout << "d[v] = " << d[v] << " " << v << endl;
+			// cout << "d[v] = " << d[v] << " " << v << endl;
 		}
 	}
 
@@ -50,12 +50,19 @@ class Graph {
 
 		for (int i = 0; i < N_VERTICES - 1; i++) {
 			for (int j = 0; j < N_VERTICES; j++) {
-				if (mat[i][j] != 0) {
-                    relax(i, j, d, p);
+				for (int k = 0; k < N_VERTICES; k++) {
+					if (mat[j][k]) {
+						relax(i, j, d, p);
+					}
 				}
 			}
+			// for (int j = 0; j < N_VERTICES; j++) {
+			// 	if (mat[i][j] != 0) {
+            //         relax(i, j, d, p);
+			// 	}
+			// }
 		}
-        print_shortest_path_tree(p, d);
+        // print_shortest_path_tree(p, d);
 
         for (int i = 0; i < N_VERTICES; i++) {
 			for (int j = 0; j < N_VERTICES; j++) {

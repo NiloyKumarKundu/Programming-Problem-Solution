@@ -22,15 +22,21 @@ struct CompareKey {
 int main() {
 	int a, b;
 	double w;
-	int V = 4, E = 5;
+	int V = 6, E = 11;
 	int edges[E][3] = {
-		{0, 1, 10},
-        {0, 2, 6},
-        {0, 3, 5},
-        {1, 3, 15},
-        {2, 3, 4}
+		{0, 1, 5},
+        {0, 5, 7},
+        {1, 2, 8},
+        {1, 5, 3},
+        {1, 0, 6},
+		{2, 3, 5},
+		{2, 4, 3},
+		{2, 5, 3},
+		{4, 3, 3},
+		{4, 5, 4},
+		{5, 2, 1}
     };
-	int s = 1;
+	int s = 3;
 
 	vector<Edge> graph[V];
 
@@ -65,13 +71,14 @@ int main() {
 		int u = u_node.v;
 		Q.pop();
 		insideQ[u] = 0;
-
+		cout << u << " " << d[u] << " " << p[u] << endl;
 		for (auto e : graph[u]) {
 			int v = e.b;
 			if (insideQ[v] == 1 && d[v] > d[u] + e.w) {
 				p[v] = u;
 				d[v] = d[u] + e.w;
 				Q.push({v, d[v]});
+				cout << v << " " << d[v] << endl;
 			}
 		}
 	}
