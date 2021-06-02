@@ -19,7 +19,7 @@ class Graph {
 		mat[u][v] = weight;
 		// mat[v][u] = weight;
 	}
-    void print_shortest_path_tree(int p[], int d[]) {
+    void print_shortest_path_tree(int *p, int *d) {
         // just print i and p[i]
 		for (int i = 0; i < N_VERTICES; i++) {
 			cout << i << "---->" << p[i] << endl;
@@ -32,7 +32,7 @@ class Graph {
 		cout << endl;
 	}
 
-	void relax(int u, int v, int d[], int p[]) {
+	void relax(int u, int v, int *d, int *p) {
 		if (d[v] > d[u] + mat[u][v]) {
 			d[v] = d[u] + mat[u][v];
 			p[v] = u;
@@ -69,8 +69,6 @@ class Graph {
 				if (mat[i][j]) {
                     if (d[j] > d[i] + mat[i][j]) {
                         cout << "NO route\n";
-                        cout << "d[v] = " << d[j] << " " << j << endl;
-						cout << d[i] + mat[i][j] << endl;
 						return;
 					}
                 }
