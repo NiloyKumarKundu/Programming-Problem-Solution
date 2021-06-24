@@ -77,34 +77,26 @@ void input() {
 
 /* ----------------------------------------------------------------------------------- */
 
+bool row[mx], col[mx];
+int r, c;
+
 void solve() {
 	int n, m;
 	cin >> n >> m;
-	int ans = n * n;
-	map<int, int> mp;
-	while(m--) {
+	r = c = n;
+	while (m--) {
 		int x, y;
 		cin >> x >> y;
-		if (mp.find(x) == mp.end()) {
-            if (mp.find(y) == mp.end()) {
-			    ans -= ((n + n) - 1);
-            } else {
-				ans -= (n - 1);
-			}
-		} else {
-            if (mp.find(y) != mp.end()) {
-                ans -= ((n + n) - 3);
-            } else {
-				ans -= (n - 1);
-			}
+
+        if (!row[x]) {
+			row[x] = true;
+			r--;
 		}
-		mp[x]++;
-		mp[y]++;
-        if (ans < 0) {
-			cout << 0 << " ";
-			continue;
+        if (!col[y]) {
+			col[y] = true;
+			c--;
 		}
-		cout << ans << " ";
+		cout << r * c << " ";
 	}
 }
 
