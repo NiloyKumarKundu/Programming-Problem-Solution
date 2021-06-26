@@ -78,18 +78,31 @@ void input() {
 /* ----------------------------------------------------------------------------------- */
 
 void solve() {
-	int size = 10;
-	cout << (1 << size) << endl;
+    string str;
+    cin >> str;
+
+	int ans = 0, len = str.length();
+
+	ans = (1 << len) - 2;
+	int pos = 0;
+    rev(i, len, 0) {
+        if (str[i] == '7') {
+			ans += (1 << pos);
+		}
+		pos++;
+	}
+	ans++;
+	cout << ans << endl;
 }
 
 int32_t main() {
     // input();
     fastInput;
-    // solve();
+    solve();
 
-    __test {
-    	solve();
-    }
+    // __test {
+    // 	solve();
+    // }
 
     // showTime;
     return 0;
