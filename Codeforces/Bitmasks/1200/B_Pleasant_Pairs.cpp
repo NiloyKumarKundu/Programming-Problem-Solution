@@ -78,8 +78,24 @@ void input() {
 /* ----------------------------------------------------------------------------------- */
 
 void solve() {
-	int size = 10;
-	cout << (1 << size) << endl;
+	int n;
+	cin >> n;
+	int arr[n + 10];
+    REP(i, 1, n) {
+		cin >> arr[i];
+	}
+
+	int ans = 0;
+	REP(i, 1, n) {
+		for (int j = arr[i] - i; j <= n; j += arr[i]) {
+            if (j >= 0) {
+                if (arr[i] *  arr[j] == i + j && i < j) {
+                    ans++;
+                }
+            }
+		}
+	}
+	cout << ans << endl;
 }
 
 int32_t main() {
