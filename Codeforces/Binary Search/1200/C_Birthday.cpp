@@ -78,7 +78,30 @@ void input() {
 /* ----------------------------------------------------------------------------------- */
 
 void solve() {
-	
+    int n;
+    cin >> n;
+	vi arr(n);
+    rep(i, 0, n) {
+		cin >> arr[i];
+	}
+	sort(arr.begin(), arr.end());
+	bool flag = true;
+	vi ans;
+	ans.push_back(arr[n - 1]);
+	rev(i, n - 1, 0) {
+		if (flag) {
+			ans.insert(ans.begin(), arr[i]);
+			flag = false;
+		} else {
+			ans.push_back(arr[i]);
+			flag = true;
+		}
+	}
+
+	for (auto i : ans) {
+		cout << i << " ";
+	}
+	cout << endl;
 }
 
 int32_t main() {
