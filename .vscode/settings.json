@@ -4,6 +4,7 @@
         "unordered_map": "cpp",
         "ostream": "cpp",
         "bitset": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "string": "cpp"
     }
 }
