@@ -78,7 +78,36 @@ void input() {
 /* ----------------------------------------------------------------------------------- */
 
 void solve() {
-    
+	int n, a, b;
+	cin >> n >> a >> b;
+	int arr[n];
+    rep(i, 0, n) {
+		cin >> arr[i];
+	}
+	int ans = 0;
+	rep(i, 0, n / 2) {
+		if (arr[i] == arr[n - i - 1]) {
+            if (arr[i] == 2) {
+				ans += (2 * min(a, b));
+			}
+		} else if (max(arr[i], arr[n - i - 1]) < 2) {
+			cout << -1 << endl;
+			return;
+		} else {
+			int x = min(arr[i], arr[n - i - 1]);
+            if (x == 0) {
+				ans += a;
+			} else {
+				ans += b;
+			}
+		}
+	}
+    if (n % 2) {
+        if (arr[n / 2] == 2) {
+			ans += min(a, b);
+		}
+	}
+	cout << ans << endl;
 }
 
 int32_t main() {
