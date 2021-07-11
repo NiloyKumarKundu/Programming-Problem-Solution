@@ -5,6 +5,9 @@
         "ostream": "cpp",
         "bitset": "cpp",
         "random": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp"
     }
 }
