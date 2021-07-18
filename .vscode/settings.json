@@ -28,6 +28,8 @@
         "unordered_set": "cpp",
         "valarray": "cpp",
         "vector": "cpp",
-        "ranges": "cpp"
+        "ranges": "cpp",
+        "queue": "cpp",
+        "stack": "cpp"
     }
 }
