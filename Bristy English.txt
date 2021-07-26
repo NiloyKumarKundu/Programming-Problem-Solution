@@ -37,3 +37,36 @@ Without Common Part:
 23. Law related acronym & abbreviation
 24. Semantics
 25. Conjunction
+
+
+
+
+
+----- Math -----
+
+1) Number,Elementary of Number***
+2)  Series****
+3) Age****
+4) Average
+5) Set
+5) Percentage*****
+6) Profit & Loss*****
+7) Interest****
+😎 Mixture*****
+9) Ratio & Proportion
+10) Cube & Volume
+12) Time & Distance*****
+13) Speed
+14) Work problem*****
+15) Equation & Fraction
+16) Square root
+17)  Statistics
+18) Angle, Triangle
+19) Circle
+20 Solid Geometry
+21)  Quadrilateral
+22) Coordinate Geometry
+23)  Probability
+24) Area
+বি.দ্র.*** চিহ্ন দ্বারা গুরুত্বপূর্ণ বুঝানো হয়েছে।
+#রেফারেন্স বই:-লিজেন্ড ভার্সিটি ম্যাথ।
