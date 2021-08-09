@@ -1,48 +1,65 @@
 #include <iostream>
-#include <string>
-
 using namespace std;
 
-void pre_order(int bin_tree[], int sz, int nodeind){
-    if(nodeind>=sz){
-        return ;
-    }
-    else if(bin_tree[nodeind]==-1){
-        return ;
-    }
-    else{
-        cout<< bin_tree[nodeind] <<endl;
 
-        pre_order(bin_tree, sz, 2*nodeind);
-
-        pre_order(bin_tree, sz, 2*nodeind+1);
-    }
+void merge_sorted_halfs(int arr[], int startind, int midind, int endind) {
+	///copying the left half to leftarr
+	int leftarrsz = (midind - startind + 1);
+	int leftarr[100];
+	for (int ind = 0; ind < leftarrsz; ind++) {
+		leftarr[ind] = arr[startind + ind];
+	}
+	///copying the right half to rightarr
+	int rightarrsz = (endind - (midind + 1) + 1);
+	int rightarr[100];
+	for (int ind = 0; ind < rightarrsz; ind++) {
+		rightarr[ind] = arr[midind + 1 + ind];	 ///midind+1, midind+1+1, ... ..., endind
+	}
+	///merging the left and right halves and placing into the main array, arr
+	int leftind = 0;
+	int rightind = 0;
+	for (int ind = startind; ind <= endind; ind++) {
+		if (leftind == leftarrsz) {
+			///when all the left array elements are already copied
+			///we only need to copy the right array elements
+			arr[ind] = rightarr[rightind];
+			rightind++;
+		} else if (rightind == rightarrsz) {
+			///when all the right array elements are already copied
+			///we only need to copy the left array elements
+			arr[ind] = leftarr[leftind];
+			leftind++;
+		} else if (leftarr[leftind] >= rightarr[rightind]) {
+			arr[ind] = leftarr[leftind];
+			leftind++;
+		} else {
+			arr[ind] = rightarr[rightind];
+			rightind++;
+		}
+	}
 }
 
-void post_order(int bin_tree[], int sz, int nodeind){
-    if(nodeind>=sz){
-        return ;
-    }
-    else if(bin_tree[nodeind]==-1){
-        return ;
-    }
-    else{
-        post_order(bin_tree, sz, 2*nodeind);
 
-        post_order(bin_tree, sz, 2*nodeind+1);
-
-        cout<< bin_tree[nodeind] <<endl;
-    }
+void merge_sort(int arr[], int startind, int endind) {
+	///startind > endind: array is empty. This case won't happen
+	if (startind == endind) {
+		///only 1 elements in the array
+		return;
+	} else if (startind < endind) {
+		///array contains more than 1 elements
+		int midind = (startind + endind) / 2;
+		merge_sort(arr, startind, midind);
+		merge_sort(arr, midind + 1, endind);
+		merge_sorted_halfs(arr, startind, midind, endind);
+	}
 }
 
-int main()   ///CEO
-{
-    int bin_tree[]={-1,10,11,100,1,-1,4,12,-1,-1,-1,-1,-1,60,37,-1};
-    int sz=sizeof(bin_tree)/sizeof(int);
-
-    pre_order(bin_tree, sz, 1);
-    cout<<"-------------------------------------"<<endl;
-    post_order(bin_tree, sz, 1);
-
-    return 0;
+int main() {
+	int arr[] = {14, 7, 3, 12, 9, 11, 6, 2};
+	int sz = sizeof(arr) / sizeof(int);
+	merge_sort(arr, 0, sz - 1);
+	for (int ind = 0; ind < sz; ind++)
+		cout << arr[ind] << " ";
+	cout << endl;
+	return 0;
 }
