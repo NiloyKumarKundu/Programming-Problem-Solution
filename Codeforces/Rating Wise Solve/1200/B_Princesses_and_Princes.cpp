@@ -78,17 +78,55 @@ void input() {
 /* ----------------------------------------------------------------------------------- */
 
 void solve() {
-    
+    int n;
+	cin >> n;
+	vector<bool> done(n, 0);
+	int freeGirl = 0;
+
+	REP(i, 1, n) {
+		int k;
+		cin >> k;
+		bool girlDone = false;
+		while (k--) {
+			int prince;
+			cin >> prince;
+
+            if (girlDone) {
+				continue;
+			}
+            if (done[prince]) {
+				continue;
+			}
+			done[prince] = true;
+			girlDone = true;
+		}
+        if (!girlDone) {
+			freeGirl = i;
+		}
+	}
+
+    if (freeGirl) {
+		cout << "IMPROVE\n";
+		cout << freeGirl << " ";
+        REP(i, 1, n) {
+            if (!done[i]) {
+				cout << i << endl;
+				break;
+			}
+		}
+	} else {
+		cout << "OPTIMAL\n";
+	}
 }
 
 int32_t main() {
     // input();
     fastInput;
-    solve();
+    // solve();
 
-    // __test {
-    // 	solve();
-    // }
+    __test {
+    	solve();
+    }
 
     // showTime;
     return 0;
