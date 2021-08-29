@@ -30,6 +30,7 @@
         "vector": "cpp",
         "ranges": "cpp",
         "queue": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "cmath": "cpp"
     }
 }
