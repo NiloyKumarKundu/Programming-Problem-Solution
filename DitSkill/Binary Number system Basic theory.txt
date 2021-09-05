@@ -1,0 +1,39 @@
+Je kono number k 2 er power hisebe prokash kora jai.
+ex: 5 = 2^0 + 2^2
+
+OR:
+
+(A | B) >= max(A, B)
+
+
+AND:
+(A & B) <= min(A, B)
+
+
+XOR:
+A ^ A = 0
+A ^ 0 = A
+
+Problem:
+---------
+c = 5
+a ^ b ^ c = 10
+now find (a ^ b) = ?
+
+solve:
+    a^b^c = 10
+=>  a^b^c^c = 10^c 
+=>  a^b^0   = 10^5
+=>  a^b     = 15
+so ans = 15.
+
+another way:
+    c = 5 =         101
+    a^b^c = 10 =    1010
+    now 101^1010 = 1111 = 15 ans.
+
+
+Left Shift:
+-----------
+
+
