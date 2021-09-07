@@ -146,3 +146,29 @@ if (res > 0)  ans = 1
 
 
 
+# pth bit on:
+-------------
+for p = 2
+a = 8 = 1000
+new num=0100
+--------------
+OR     =1100 (result)
+
+so, make pth bit 1 = just doing OR
+
+so, (a | 2^p) = a | (1 << p) = res 
+
+
+# make pth bit off:
+
+for p = 2
+(at first check if pth bit is already off or not)
+if on then,
+
+a = 7 = 111
+num   = 100
+------------
+XOR   = 011
+
+
+so, a^ (2^p) = a^(1 << p) = res 
