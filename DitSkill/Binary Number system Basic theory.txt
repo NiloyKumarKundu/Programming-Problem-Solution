@@ -36,4 +36,113 @@ another way:
 Left Shift:
 -----------
 
+Left shift mane holo kono ekta binary number k 10 diye multiply kora.
+EX:
+        101 * 10 = 1010
+    Dec: 5  * 2  = 10
+orthat, Left shift er ortho holo, kono ekta number k (integer) 2 dara multiply kora.
+
+So, value << p = value * 2^p
+
+
+ekhon jodi 2^p er value ber korte chai, 
+
+    a * 2^p = a << p
+    2^p = 1 * 2^p = 1 << p
+
+1 << p dilei hobe.
+tobe ekhane data type jeta silo a er result er data type o same hbe.
+Overflow jno na hy eita mathai rakha lagbe.
+
+int a; => a << 30 (max)
+
+
+
+
+
+Right Shift:
+------------
+
+Eta holo 2 dara vag kora.
+
+a >> 1 = floor(a / 2)
+
+a >> p = floor(a / 2^p)
+
+
+
+MOD:
+-----
+
+a % m = ?
+
+if (m == 2^p) hoi, tahole bitwise operation kore mod  kora jai.
+
+
+Now, 
+a = 10101011
+m = 16 = 2^4 = 10000
+
+jodi, a / m kori, tahole vagsesh hobe, 1011
+
+ekhon, 
+m - 1 = 10000 - 1 = 1111 (amader last 4 ta digit dorkar vagsesh hisebe)
+
+Ekhon, jodi, 
+
+a & (m - 1)
+    a   = 10101011
+m - 1   = 00001111
+---------------------
+reminder= 00001011 (this is the reminder!)
+
+so, if (m == 2^p) then, 
+    a % m = (a & (m - 1))
+
+
+
+
+# kono ekti paricular ghor e bir on or off kivabe ber korbo?
+------------------------------------------------------------
+
+a = 5 = 101
+suppose, p = 1 no ghor er bit ber korte bolse
+
+amra ekta number generate korbo jekhane p no ghor e 1 and baki ghor e 0 diye dibo.
+
+Now,    a = 101
+      num = 010
+      ----------
+    AND   = 000
+
+ekhane result er p no ghor e jodi 0 thake tahole jehetu new generated number er p no ghor e 1 silo, 
+so and er result 0 asbe jodi a er p no ghor e 0 thake.
+
+so ans hbe 0.
+
+
+again, a = 7 = 111
+    new no   = 010
+    ---------------
+    AND      = 010
+
+
+ekhane result er p no ghor e jodi 1 thake tahole jehetu new generated number er p no ghor e 1 silo, 
+so and er result 1 asbe jodi a er p no ghor e 1 thake.
+
+ekhon number generate kivabe korbo?
+=> so ei number ta hocche 2^p. p er ghor e 1 thaka manei p no pos e 1 generate houa.
+
+for ex-1, 2 = 2^1 
+for ex-2, 2 = 2^1
+
+now pth bit checking:
+
+a & 2^p = a & (1 << p) = res 
+
+if (res == 0) ans = 0
+if (res > 0)  ans = 1
+
+
+
 
